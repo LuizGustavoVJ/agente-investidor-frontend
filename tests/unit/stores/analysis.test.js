@@ -13,10 +13,10 @@ describe('Analysis Store', () => {
 
   describe('Estado inicial', () => {
     it('deve ter estado inicial correto', () => {
-      expect(analysisStore.analysis).toEqual({})
+      expect(analysisStore.currentAnalysis).toBeNull()
       expect(analysisStore.methodologies).toEqual([])
       expect(analysisStore.recommendations).toEqual([])
-      expect(analysisStore.riskAnalysis).toEqual({})
+      expect(analysisStore.alerts).toEqual([])
       expect(analysisStore.isLoading).toBe(false)
       expect(analysisStore.error).toBeNull()
     })
@@ -24,10 +24,10 @@ describe('Analysis Store', () => {
 
   describe('Propriedades básicas', () => {
     it('deve ter propriedades necessárias', () => {
-      expect(analysisStore).toHaveProperty('analysis')
+      expect(analysisStore).toHaveProperty('currentAnalysis')
       expect(analysisStore).toHaveProperty('methodologies')
       expect(analysisStore).toHaveProperty('recommendations')
-      expect(analysisStore).toHaveProperty('riskAnalysis')
+      expect(analysisStore).toHaveProperty('alerts')
       expect(analysisStore).toHaveProperty('isLoading')
       expect(analysisStore).toHaveProperty('error')
     })
@@ -45,8 +45,8 @@ describe('Analysis Store', () => {
         diversificationScore: 78
       }
 
-      analysisStore.analysis = mockAnalysis
-      expect(analysisStore.analysis).toEqual(mockAnalysis)
+      analysisStore.currentAnalysis = mockAnalysis
+      expect(analysisStore.currentAnalysis).toEqual(mockAnalysis)
     })
 
     it('deve permitir definir metodologias', () => {
@@ -103,8 +103,8 @@ describe('Analysis Store', () => {
         alerts: []
       }
 
-      analysisStore.riskAnalysis = mockRiskAnalysis
-      expect(analysisStore.riskAnalysis).toEqual(mockRiskAnalysis)
+      analysisStore.marketAnalysis = mockRiskAnalysis
+      expect(analysisStore.marketAnalysis).toEqual(mockRiskAnalysis)
     })
   })
 

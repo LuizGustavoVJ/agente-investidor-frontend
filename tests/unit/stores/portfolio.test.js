@@ -13,10 +13,10 @@ describe('Portfolio Store', () => {
 
   describe('Estado inicial', () => {
     it('deve ter estado inicial correto', () => {
-      expect(portfolioStore.portfolio).toEqual({})
+      expect(portfolioStore.summary).toBeNull()
       expect(portfolioStore.assets).toEqual([])
-      expect(portfolioStore.performance).toEqual({})
-      expect(portfolioStore.diversification).toEqual({})
+      expect(portfolioStore.performance).toBeNull()
+      expect(portfolioStore.allocation).toBeNull()
       expect(portfolioStore.isLoading).toBe(false)
       expect(portfolioStore.error).toBeNull()
     })
@@ -24,10 +24,10 @@ describe('Portfolio Store', () => {
 
   describe('Propriedades básicas', () => {
     it('deve ter propriedades necessárias', () => {
-      expect(portfolioStore).toHaveProperty('portfolio')
+      expect(portfolioStore).toHaveProperty('summary')
       expect(portfolioStore).toHaveProperty('assets')
       expect(portfolioStore).toHaveProperty('performance')
-      expect(portfolioStore).toHaveProperty('diversification')
+      expect(portfolioStore).toHaveProperty('allocation')
       expect(portfolioStore).toHaveProperty('isLoading')
       expect(portfolioStore).toHaveProperty('error')
     })
@@ -45,8 +45,8 @@ describe('Portfolio Store', () => {
         totalInvested: 80000
       }
 
-      portfolioStore.portfolio = mockPortfolio
-      expect(portfolioStore.portfolio).toEqual(mockPortfolio)
+      portfolioStore.summary = mockPortfolio
+      expect(portfolioStore.summary).toEqual(mockPortfolio)
     })
 
     it('deve permitir definir assets', () => {
@@ -78,8 +78,8 @@ describe('Portfolio Store', () => {
         ]
       }
 
-      portfolioStore.diversification = mockDiversification
-      expect(portfolioStore.diversification).toEqual(mockDiversification)
+      portfolioStore.allocation = mockDiversification
+      expect(portfolioStore.allocation).toEqual(mockDiversification)
     })
   })
 
@@ -108,9 +108,9 @@ describe('Portfolio Store', () => {
       const newAsset = { id: 1, symbol: 'PETR4', quantity: 100 }
       
       portfolioStore.assets.push(newAsset)
-      
-      expect(portfolioStore.assets).toContain(newAsset)
+
       expect(portfolioStore.assets).toHaveLength(1)
+      expect(portfolioStore.assets[0]).toMatchObject(newAsset)
     })
 
     it('deve remover asset da lista', () => {
