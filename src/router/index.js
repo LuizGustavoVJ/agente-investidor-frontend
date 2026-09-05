@@ -103,6 +103,17 @@ const routes = [
     }
   },
   {
+    path: '/metas',
+    name: 'Metas',
+    component: () => import('@/views/Metas.vue'),
+    beforeEnter: requireAuth,
+    meta: {
+      title: 'Metas - Agente Investidor',
+      description: 'Defina e acompanhe seus objetivos de investimento',
+      requiresAuth: true
+    }
+  },
+  {
     path: '/relatorios',
     name: 'Relatorios',
     component: () => import('@/views/Relatorios.vue'),
