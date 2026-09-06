@@ -92,6 +92,23 @@ export const authAPI = {
   // Verificar código 2FA
   verify2FA: (code) => {
     return client.post('/auth/security/2fa/verify', { code })
+  },
+
+  // Encerrar sessão remota
+  terminateSession: (sessionId) => {
+    return client.delete(`/auth/sessions/${sessionId}`)
+  },
+
+  // Exportar dados pessoais (LGPD)
+  exportUserData: () => {
+    return client.get('/auth/export', {
+      responseType: 'blob'
+    })
+  },
+
+  // Excluir conta do usuário
+  deleteAccount: () => {
+    return client.delete('/auth/account')
   }
 }
 
