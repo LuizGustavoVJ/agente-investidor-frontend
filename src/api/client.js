@@ -77,7 +77,7 @@ client.interceptors.response.use(
       await authStore.logout()
       
       // Redirecionar para login se não estiver em páginas públicas
-      const publicRoutes = ['/', '/login', '/cadastro']
+      const publicRoutes = ['/', '/login', '/cadastro', '/recuperar-senha']
       if (!publicRoutes.includes(window.location.pathname)) {
         window.location.href = '/login'
       }

@@ -25,7 +25,7 @@ export const useAnalysisStore = defineStore('analysis', () => {
   })
 
   const recentRecommendations = computed(() => {
-    return recommendations.value
+    return [...recommendations.value]
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       .slice(0, 5)
   })
@@ -43,7 +43,7 @@ export const useAnalysisStore = defineStore('analysis', () => {
   })
 
   const recentAnalyses = computed(() => {
-    return analysisHistory.value
+    return [...analysisHistory.value]
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       .slice(0, 10)
   })
