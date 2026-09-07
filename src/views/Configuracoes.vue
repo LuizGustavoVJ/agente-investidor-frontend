@@ -876,7 +876,11 @@ const saveProfile = async () => {
   
   try {
     isSavingProfile.value = true
-    await authStore.updateProfile(profileForm.value)
+    const result = await authStore.updateProfile(profileForm.value)
+    if (!result?.success) {
+      toast.error(result?.error || 'Erro ao salvar perfil')
+      return
+    }
     toast.success('Perfil atualizado com sucesso!')
   } catch (error) {
     console.error('Erro ao salvar perfil:', error)

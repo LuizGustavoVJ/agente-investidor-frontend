@@ -331,7 +331,9 @@ const getTypeClass = (type) => {
 const getGoalProgress = () => {
   if (activeGoals.value.length === 0) return 0
   
-  const totalTarget = activeGoals.value.reduce((sum, goal) => sum + goal.targetAmount, 0)
+  const totalTarget = activeGoals.value.reduce((sum, goal) => sum + (goal.targetAmount || 0), 0)
+  if (!totalTarget) return 0
+
   const currentValue = totalValue.value
   
   return Math.min((currentValue / totalTarget) * 100, 100)
@@ -341,11 +343,16 @@ const syncData = async () => {
   try {
     toast.info('Sincronizando dados...')
     
-    await Promise.all([
+    const results = await Promise.all([
       portfolioStore.syncBrokers(),
       portfolioStore.loadAllData(),
       analysisStore.loadAllData()
     ])
+
+    if (results.some((result) => result && result.success === false)) {
+      toast.error('Erro na sincronização dos dados')
+      return
+    }
     
     toast.success('Dados sincronizados com sucesso!')
     

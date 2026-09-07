@@ -29,13 +29,13 @@ export const usePortfolioStore = defineStore('portfolio', () => {
   })
   
   const topAssets = computed(() => {
-    return assets.value
+    return [...assets.value]
       .sort((a, b) => b.currentValue - a.currentValue)
       .slice(0, 10)
   })
   
   const recentTransactions = computed(() => {
-    return transactions.value
+    return [...transactions.value]
       .sort((a, b) => new Date(b.date) - new Date(a.date))
       .slice(0, 10)
   })
