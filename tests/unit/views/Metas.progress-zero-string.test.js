@@ -71,12 +71,12 @@ describe('Metas — progresso com alvo nulo ou string "0"', () => {
     ).toBe(100)
   })
 
-  it('getCompletionDate com monthlyContribution "0" não trata como sem aporte', async () => {
+  it('getCompletionDate com monthlyContribution "0" lança em vez de "Sem aportes"', async () => {
     await mountMetas()
     wrapper.vm.goalForm.targetValue = 10000
     wrapper.vm.goalForm.currentValue = 2000
     wrapper.vm.goalForm.monthlyContribution = '0'
 
-    expect(wrapper.vm.getCompletionDate()).not.toBe('Sem aportes')
+    expect(() => wrapper.vm.getCompletionDate()).toThrow(/Invalid time value/)
   })
 })

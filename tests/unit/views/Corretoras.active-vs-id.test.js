@@ -61,13 +61,12 @@ describe('Corretoras — status active da store vs id de conexão', () => {
     expect(wrapper.vm.availableToConnect.map((b) => b.id)).toEqual(['xp', 'rico'])
   })
 
-  it('busca lança se a corretora conectada não tem name', async () => {
+  it('busca lança se a corretora conectada não tem name', () => {
     brokersStore.connectedBrokers = [
       { id: 'xp', accountInfo: 'Conta 1', status: 'connected' }
     ]
     wrapper.vm.searchTerm = 'xp'
-    await wrapper.vm.$nextTick()
 
-    expect(() => wrapper.vm.filteredConnectedBrokers).toThrow()
+    expect(() => [...wrapper.vm.filteredConnectedBrokers]).toThrow(TypeError)
   })
 })
