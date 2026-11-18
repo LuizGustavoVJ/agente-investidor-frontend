@@ -419,7 +419,7 @@
                   <span class="stat-label">membros</span>
                 </div>
                 <div class="stat">
-                  <span class="stat-number">{{ group.posts }</span>
+                  <span class="stat-number">{{ group.posts }}</span>
                   <span class="stat-label">posts</span>
                 </div>
                 <div class="stat">
@@ -479,7 +479,7 @@
                   <span class="stat-label">membros</span>
                 </div>
                 <div class="stat">
-                  <span class="stat-number">{{ group.posts }</span>
+                  <span class="stat-number">{{ group.posts }}</span>
                   <span class="stat-label">posts/dia</span>
                 </div>
                 <div class="stat">
